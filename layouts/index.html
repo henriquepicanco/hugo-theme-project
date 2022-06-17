@@ -1,0 +1,91 @@
+{{ define "main" }}
+
+<div class="block max-w-7xl w-full mx-auto">
+    <main class="py-16 px-5 lg:px-9">
+        <div>
+            <section>
+                <div class="grid gap-x-8 gap-y-10 grid-cols-1 lg:grid-cols-2">
+                    {{ range first 1 ( .Site.RegularPages ) }}
+                        {{- partial "content/content-grid-large" . -}}
+                    {{ end }}
+
+                    {{ range first 6 (after 1 .Site.RegularPages ) }}
+                        {{- partial "content/content-grid-medium" . -}}
+                    {{ end }}
+                </div>
+
+                <footer class="border-t border-zinc-300 dark:border-zinc-700 mt-12 pt-5 text-right font-sans">
+                    <a class="items-center inline-flex font-semibold tracking-tighter" href="/pagina/2">
+                        {{ T "showMore"}}
+                        <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                    </a>
+                </footer>
+            </section>
+
+            <section>
+                <h2 class="text-2xl tracking-tighter mb-10">Filmes</h2>
+
+                <div class="grid gap-x-8 gap-y-10 grid-cols-1 lg:grid-cols-2">
+                    {{ range first 1 (index .Site.Taxonomies.categories "filmes") }}
+                        {{- partial "content/content-grid-large" . -}}
+                    {{ end }}
+
+                    {{ range first 6 (after 1 (index .Site.Taxonomies.categories "filmes")) }}
+                        {{- partial "content/content-grid-medium" . -}}
+                    {{ end }}
+                </div>
+
+                <footer class="border-t border-zinc-300 dark:border-zinc-700 mt-12 pt-5 text-right font-sans">
+                    <a class="items-center inline-flex font-semibold tracking-tighter" href="/filmes">
+                        {{ T "showMore"}}
+                        <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                    </a>
+                </footer>
+            </section>
+
+            <section>
+                <h2 class="text-2xl tracking-tighter mb-10">Séries e TV</h2>
+
+                <div class="grid gap-x-8 gap-y-10 grid-cols-1 lg:grid-cols-2">
+                    {{ range first 1 (index .Site.Taxonomies.categories "series-e-tv") }}
+                        {{- partial "content/content-grid-large" . -}}
+                    {{ end }}
+
+                    {{ range first 6 (after 1 (index .Site.Taxonomies.categories "series-e-tv") ) }}
+                        {{- partial "content/content-grid-medium" . -}}
+                    {{ end }}
+                </div>
+
+                <footer class="border-t border-zinc-300 dark:border-zinc-700 mt-12 pt-5 text-right font-sans">
+                    <a class="items-center inline-flex font-semibold tracking-tighter" href="/series-e-tv">
+                        {{ T "showMore"}}
+                        <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                    </a>
+                </footer>
+            </section>
+
+            <section>
+                <h2 class="text-2xl tracking-tighter mb-10">Animes e Mangás</h2>
+
+                <div class="grid gap-x-8 gap-y-10 grid-cols-1 lg:grid-cols-2">
+                    {{ range first 1 (index .Site.Taxonomies.categories "animes-e-mangas") }}
+                        {{- partial "content/content-grid-large" . -}}
+                    {{ end }}
+
+                    {{ range first 6 (after 1 (index .Site.Taxonomies.categories "animes-e-mangas") ) }}
+                        {{- partial "content/content-grid-medium" . -}}
+                    {{ end }}
+                </div>
+
+                <footer class="border-t border-zinc-300 dark:border-zinc-700 mt-12 pt-5 text-right font-sans">
+                    <a class="items-center inline-flex font-semibold tracking-tighter" href="/animes-e-mangas">
+                        {{ T "showMore"}}
+                        <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                    </a>
+                </footer>
+            </section>
+        </div>
+    </main>
+</div>
+
+{{ end }}

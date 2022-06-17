@@ -1,0 +1,19 @@
+{{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+
+{{ with $image }}
+<figure class="before:content-[''] before:block before:pb-custom-70 relative max-w-full w-32 h-full flex-1 inset-0">
+    <img
+        class="block max-w-full h-full left-0 object-cover absolute top-0 w-full"
+        srcset="
+            {{ ($image.Resize "300x center").RelPermalink }} 360w,
+            {{ ($image.Resize "720x center").RelPermalink }} 7206w,
+            {{ ($image.Resize "960x center").RelPermalink }} 960w,
+            {{ ($image.Resize "1200x center").RelPermalink }} 1200w,
+            {{ ($image.Resize "2000x center").RelPermalink }} 2000w,
+        "
+        sizes="(max-width: 1200px) 100vw, 1200px"
+        src="{{ ($image.Resize "2000x center").RelPermalink }}"
+        alt="{{ .Title }}"
+    />
+</figure>
+{{ end }}

@@ -1,0 +1,54 @@
+{{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+
+<article class="border-b border-zinc-300 dark:border-zinc-700 mb-1 lg:mb-4 pb-9 lg:pb-10 lg:col-start-1 lg:col-end-3">
+    <div class="flex flex-col lg:flex-row gap-8">
+        
+        {{ if .Params.featured_image }}
+            <a href="{{ .Permalink }}" class="before:content-[''] before:block before:pb-custom-60 relative max-w-full w-full h-full flex-1 inset-0">
+                {{ with $image }}
+                    <figure class="block max-w-full h-full left-0 object-cover absolute top-0 w-full">
+                        <img
+                            srcset="
+                                {{ ($image.Resize "300x center").RelPermalink }} 360w,
+                                {{ ($image.Resize "720x center").RelPermalink }} 720w,
+                                {{ ($image.Resize "960x center").RelPermalink }} 960w,
+                                {{ ($image.Resize "1200x center").RelPermalink }} 1200w,
+                                {{ ($image.Resize "2000x center").RelPermalink }} 2000w,
+                            "
+                            sizes="(max-width: 1200px) 100vw, 1200px"
+                            src="{{ ($image.Resize "2000x center").RelPermalink }}"
+                            alt="{{ .Title }}"
+                        />
+                    </figure>
+                {{ end }}
+            </a>
+        {{ end }}
+
+        <div class="w-full flex-1 -mt-[3px]">
+            <header>
+                <h3 class="text-2xl lg:text-3xl tracking-tighter m-0"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            </header>
+
+            {{ if .Params.excerpt }}
+                <div class="text-base lg:text-lg mt-3">{{ .Summary }}</div>
+            {{ end }}
+
+            <footer class="flex items-center text-[11px] gap-x-2 font-medium mt-4 uppercase leading-none font-sans">
+                {{ if .Params.authors }}
+                    <span class="posted-by hidden lg:block">
+                        {{ T "by" }}  
+                        {{ if .Params.authors -}}
+                        {{ range $index, $contributor := .Params.authors }}
+                        {{ if gt $index 0 }} e {{ end }}
+                        <a class="font-bold" href="{{ "/autor/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+                        {{ end }}
+                    </span>
+                    {{ end -}}
+            
+                    <span class="bg-current rounded-full h-[2px] w-[2px] hidden lg:block"></span>
+                {{ end -}}
+                <time class="posted-on list-none" datetime="{{ .PublishDate.Format "02/01/2006"}}">{{ .PublishDate.Format "02/01/2006"}}</time>
+            </footer>
+        </div>
+    </div>
+</article>

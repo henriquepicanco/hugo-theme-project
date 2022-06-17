@@ -1,0 +1,12 @@
+name = "Hugo Theme Project"
+license = "MIT"
+licenselink = "https://github.com/henriquepicanco/hugo-theme-project/blob/master/LICENSE"
+description = "O tema do Curto Circuito"
+homepage = "https://curtocircuito.net/"
+tags = []
+features = []
+min_version = "0.41"
+
+[author]
+  name = "Henrique Picanço"
+  homepage = "https://github.com/henriquepicanco"

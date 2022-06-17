@@ -1,0 +1,31 @@
+<div id="offcanvas-menu" class="fixed top-0 left-0 bg-yellow-400 transition-all duration-300 w-screen h-screen hidden">
+    <div class="max-w-screen-xl mx-auto relative pt-24 px-6">
+        <div class="flex flex-col justify-start items-center w-full h-full gap-y-12">
+            {{ if .Site.Menus.main }}
+            <nav id="nav-menu" class="max-w-full w-full relative">
+                <ul class="list-none flex flex-col justify-start p-0 m-0 items-center flex-1 overflow-hidden w-auto gap-y-6">
+                    {{- $currentPage := . -}}
+                    {{ range .Site.Menus.main -}}
+                    <li class="w-full m-0 whitespace-nowrap">
+                        <a href="{{ .URL | absLangURL }}" class="font-bold text-lg uppercase h-full flex justify-start items-center tracking-tight" aria-current="page">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+            {{ end }}
+
+            {{ if .Site.Menus.footer }}
+            <nav id="footer-nav" class="max-w-full w-full relative">
+                <ul class="list-none flex flex-col justify-start p-0 m-0 items-center flex-1 overflow-hidden w-auto gap-y-4">
+                    {{- $currentPage := . -}}
+                    {{ range .Site.Menus.footer -}}
+                    <li class="w-full m-0 whitespace-nowrap">
+                        <a class="text-base {{ if $currentPage.IsMenuCurrent "main" . }} active{{ end }}" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+                    </li>
+                    {{- end }}
+                </ul>
+            </nav>
+            {{ end }}
+        </div>
+    </div>
+</div>

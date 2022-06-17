@@ -1,0 +1,9 @@
+{{ if .Site.Menus.footer }}
+<nav class="flex flex-col lg:flex-row">
+    <ul class="flex flex-col lg:flex-row list-none items-center p-0 m-0">
+        {{ range .Site.Menus.footer -}}
+        <li class="m-0"><a class="block font-sans text-sm leading-loose px-0 lg:px-2" href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+        {{- end }}
+    </ul>
+</nav>
+{{ end }}

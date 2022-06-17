@@ -1,0 +1,7 @@
+{{ if .Params.tags }}
+    <span class="block lg:items-center mt-10">
+        {{ range .Params.tags }}
+            <a class="font-bold no-underline inline-block px-2 lg:px-4 py-0 lg:py-1 text-sm mb-2 mr-2 rounded border border-black bg-yellow-400 text-black hover:text-black" href="{{ "/tudo-sobre/" | relURL }}{{ . | urlize}}">{{ . }}</a>
+        {{ end }}
+    </span>
+{{ end }}

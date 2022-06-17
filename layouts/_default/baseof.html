@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode }}">
+    {{- partial "head/head" . -}}
+
+    <body class="body">
+        <div id="page" class="site">
+            <a class="sr-only" href="#site-content">{{ T "skipContent" }}</a>
+
+            {{ block "header" . }}{{- partial "header/site-header" . -}}{{ end }}
+
+            <div class="flex flex-col flex-wrap flex-1">
+                {{- block "main" . }}{{- end }}
+            </div>
+
+            {{ block "footer" . }}{{- partial "footer/site-footer" . -}}{{ end }}
+
+            {{ block "offcanvas" . }}{{- partial "offcanvas/offcanvas-menu" . -}}{{ end }}
+        </div>
+
+        {{ block "icons-symbol-defs" . }}{{- partial "icons/icons-symbol-defs" . -}}{{ end }}
+
+        <script id="menu-toggle-js" type="text/javascript">
+            const menuToggle = document.getElementById( 'menu-toggle' );
+
+            const menuOpenIcon = document.getElementById( 'menu-open-icon' );
+            const menuCloseIcon = document.getElementById( 'menu-close-icon' );
+
+            menuToggle.addEventListener( 'click', function() {
+                document.body.classList.toggle( 'offcanvas-menu-toggled' );
+                document.body.classList.remove( 'offcanvas-search-toggled' );
+
+                if ( menuToggle.getAttribute( 'aria-expanded' ) === 'true' ) {
+                    menuToggle.setAttribute( 'aria-expanded', 'false' );
+
+                    menuOpenIcon.classList.add( 'block' );
+                    menuOpenIcon.classList.remove( 'hidden' );
+
+                    menuCloseIcon.classList.add( 'hidden' );
+                    menuCloseIcon.classList.remove( 'block' );
+                } else {
+                    menuToggle.setAttribute( 'aria-expanded', 'true' );
+
+                    menuOpenIcon.classList.add( 'hidden' );
+                    menuOpenIcon.classList.remove( 'block' );
+
+                    menuCloseIcon.classList.add( 'block' );
+                    menuCloseIcon.classList.remove( 'hidden' );
+                }
+            });
+        </script>
+
+        <script id="search-toggle-js" type="text/javascript">
+            const searchToggle = document.getElementById( 'search-toggle' );
+
+            const searchOpenIcon = document.getElementById( 'search-open-icon' );
+            const searchCloseIcon = document.getElementById( 'search-close-icon' );
+
+            searchToggle.addEventListener( 'click', function() {
+                document.body.classList.toggle( 'offcanvas-search-toggled' );
+                document.body.classList.remove( 'offcanvas-menu-toggled' );
+
+                if ( searchToggle.getAttribute( 'aria-expanded' ) === 'true' ) {
+                    searchToggle.setAttribute( 'aria-expanded', 'false' );
+
+                    searchOpenIcon.classList.add( 'block' );
+                    searchOpenIcon.classList.remove( 'hidden' );
+
+                    searchCloseIcon.classList.add( 'hidden' );
+                    searchCloseIcon.classList.remove( 'block' );
+                } else {
+                    searchToggle.setAttribute( 'aria-expanded', 'true' );
+
+                    searchOpenIcon.classList.add( 'hidden' );
+                    searchOpenIcon.classList.remove( 'block' );
+
+                    searchCloseIcon.classList.add( 'block' );
+                    searchCloseIcon.classList.remove( 'hidden' );
+                }
+            });
+        </script>
+
+        <script id="site-header-js" type="text/javascript">
+            var prevScrollpos = window.pageYOffset;
+            window.onscroll = function() {
+                var currentScrollPos = window.pageYOffset;
+                if (prevScrollpos > currentScrollPos) {
+                    document.querySelector("#masthead").style.top = "0";
+                } else {
+                    document.querySelector("#masthead").style.top = "-131px";
+                }
+                prevScrollpos = currentScrollPos;
+            }
+        </script>
+    </body>
+</html>

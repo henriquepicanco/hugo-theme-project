@@ -1,0 +1,23 @@
+{{ define "main" }}
+
+<div class="max-w-screen-xl mx-auto px-4 py-6 lg:py-12 flex flex-col lg:flex-row lg:gap-x-20 space-y-12 lg:space-y-0">
+    <div class="w-full lg:w-8/12 space-y-4">
+        <article class="block space-y-8">
+            <header class="flex flex-col flex-wrap space-y-4 lg:space-y-6">
+                {{ if .Title }}
+                    <h1 class="block text-2xl lg:text-4xl my-0">{{ .Title }}</h1>
+                {{ end }}
+            </header>
+
+            {{ block "featured_image" . }}{{ partial "post/featured_image" . }}{{ end }}
+
+            {{ if .Content }}
+            <section class="flex flex-col flex-nowrap font-serif">
+                {{ .Content }}
+            </section>
+            {{ end }}
+        </article>
+    </div>
+
+</div>
+{{ end }}

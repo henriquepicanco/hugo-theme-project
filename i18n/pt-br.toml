@@ -1,0 +1,29 @@
+[skipContent]
+    other = "Pular para conteúdo"
+
+[menu]
+    other = "Menu"
+
+[search]
+    other = "Pesquisar"
+
+[by]
+    other = "Por"
+
+[latest]
+    other = "Últimas"
+
+[showMore]
+    other = "Mostrar mais"
+
+[copyright]
+    other = "Todos os direitos reservados."
+
+[version]
+    other = "Versão"
+
+[changelog]
+    other = "Ver changelog"
+
+[cookiesNotice]
+    other = "Este website usa cookies para assegurar a melhor experiência de navegação para nossos leitores."

@@ -1,0 +1,12 @@
+{{ if .Site.Menus.main }}
+    <nav id="nav-menu" class="hidden lg:flex lg:justify-start max-w-full w-full h-8 relative order-2 ml-6">
+        <ul class="list-none flex justify-start p-0 m-0 items-center flex-1 overflow-hidden w-auto gap-x-6">
+            {{- $currentPage := . -}}
+            {{ range .Site.Menus.main -}}
+            <li class="m-0 whitespace-nowrap">
+                <a href="{{ .URL | absLangURL }}" class="font-sans font-semibold text-sm h-full flex items-center tracking-tight" aria-current="page">{{ .Name }}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </nav>
+{{ end }}

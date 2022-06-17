@@ -1,0 +1,10 @@
+{{ if .Params.categories }}
+    <span class="flex flex-row flex-nowrap">
+        {{ if .Params.categories -}}
+        {{ range $index, $categories := .Params.categories }}
+        {{ if gt $index 0 }}, {{ end }}
+        <a class="text-base font-bold uppercase" href="{{ "/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+        {{ end }}
+    </span>
+    {{ end -}}
+{{ end -}}

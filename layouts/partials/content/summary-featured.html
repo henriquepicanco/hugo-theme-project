@@ -1,0 +1,37 @@
+<article class="relative aspect-video after:bg-black after:opacity-40 after:absolute after:h-full after:w-full after:top-0 after:left-0 after:block after:z-10 h-96">
+    <a class="absolute h-full w-full top-0 left-0 z-30" href="{{ .Permalink }}"></a>
+
+    {{ if $.Params.featured_image }}
+    {{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+
+    {{ with $image }}
+        <img
+            class="h-full w-full object-cover"
+            srcset="{{ ($image.Resize "360x0").RelPermalink }} 360w,
+                    {{ ($image.Resize "600x0").RelPermalink }} 600w,
+            "
+            src="{{ ($image.Resize "800x450").RelPermalink }}"
+            sizes="(min-width: 800px) 800px"
+            width="800"
+            height="450"
+            
+        />
+    {{ end }}
+    {{ end }}
+
+    <div class="absolute left-0 right-0 bottom-10 mx-auto px-10 lg:px-0 lg:max-w-xl text-center text-white space-y-4 z-20">
+        {{ if .Params.categories }}
+            <span class="flex justify-center pb-2">
+                {{ if .Params.categories -}}
+                {{ range $index, $categories := .Params.categories }}
+                {{ if gt $index 0 }}, {{ end }}
+                <span class="text-white dark:bg-gray-100 underline underline-offset-8 decoration-white transition-colors duration-300 text-sm font-bold uppercase rounded-full" href="{{ "/" | relURL }}{{ . | urlize }}/">{{ . }}</span>
+                {{ end }}
+            </span>
+            {{ end -}}
+        {{ end -}}
+
+        <h1 class="text-2xl my-0">{{ .Title }}</h1>
+        <div class="text-base">{{ .Param "excerpt" }}</div>
+    </div>
+</article>

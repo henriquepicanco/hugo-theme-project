@@ -1,0 +1,38 @@
+<article class="flex flex-row items-center gap-x-4 sm:gap-x-8">
+    <a class="w-40 sm:w-64 lg:w-80 aspect-square relative bg-gray-100" href="{{ .Permalink }}">
+        {{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+
+        {{ with $image }}
+        <img
+            class="h-full w-full object-cover"
+            srcset='{{ ($image.Fill "160x160 center").RelPermalink }} 160w,
+                    {{ ($image.Fill "256x256 center").RelPermalink }} 256w,
+                    {{ ($image.Fill "320x320 center").RelPermalink }} 320w,
+            '
+            src='{{ ($image.Resize "780x0").RelPermalink }}'
+            sizes="(min-width: 780px) 780px"
+            width="780"
+            height="auto"
+        />
+        {{ end }}
+    </a>
+
+    <div class="flex flex-col space-y-2 sm:space-y-4 align-top w-full">                
+        {{ if .Params.categories }}
+            <span class="flex">
+                {{ if .Params.categories -}}
+                {{ range $index, $categories := .Params.categories }}
+                {{ if gt $index 0 }}, {{ end }}
+                <a class="no-underline text-orange-700 hover:test-orange-800 dark:text-gray-600 dark:hover:text-gray-700 transition-colors duration-300 text-xs font-bold uppercase" href="{{ "/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+                {{ end }}
+            </span>
+            {{ end -}}
+        {{ end -}}
+
+        <h1 class="block text-sm sm:text-lg lg:text-xl my-0">
+            <a class="no-underline text-orange-700 hover:text-orange-800" href="{{ .Permalink }}">{{ .Title }}</a>
+        </h1>
+        <div class="text-base hidden sm:block">{{ .Param "excerpt" }}</div>
+        <div class="block text-xs">{{ .PublishDate.Format "02/01/2006"}}</div>
+    </div>
+</article>

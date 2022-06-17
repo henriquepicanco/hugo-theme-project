@@ -1,0 +1,18 @@
+{{ if $.Params.featured_image }}
+{{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+{{ with $image }}
+    <img
+        srcset="
+            {{ ( $image.Resize "360x" ).RelPermalink }} 360w,
+            {{ ( $image.Resize "600x" ).RelPermalink }} 600w,
+            {{ ( $image.Resize "780x" ).RelPermalink }} 780w,
+            {{ ( $image.Resize "1024x" ).RelPermalink }} 1024w,
+            {{ ( $image.Resize "1366x" ).RelPermalink }} 1366w
+        "
+        src='{{ ( $image.Resize "1024x" ).RelPermalink }}'
+        sizes="(min-width: 1024px) 1024px, 100w"
+        width="1024"
+        height="auto"
+    />
+{{ end }}
+{{ end }}

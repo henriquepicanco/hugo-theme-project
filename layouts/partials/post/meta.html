@@ -1,0 +1,18 @@
+{{ if .Param "date" }}
+    <div class="text-sm lg:text-base text-gray-900 dark:text-gray-200 flex flex-nowrap flex-row">
+        {{ if .Params.authors }}
+            <span class="inline-block">Por  
+                {{ if .Params.authors -}}
+                {{ range $index, $contributor := .Params.authors }}
+                {{ if gt $index 0 }} e {{ end }}
+                <a class="font-bold" href="{{ "/autor/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
+                {{ end }}
+            </span>
+            {{ end -}}
+    
+            <span class="inline-block mx-1 lg:mx-3">|</span>
+        {{ end -}}
+    
+        <span class="inline-block">{{ .PublishDate.Format "02/01/2006"}}</span>
+    </div>
+{{ end }}
