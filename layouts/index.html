@@ -84,6 +84,62 @@
                     </a>
                 </footer>
             </section>
+
+            <div class="grid gap-x-20 gap-y-12 grid-cols-1 lg:grid-cols-3 mt-32">
+                <section>
+                    <header class="flex items-center border-b border-zinc-300 dark:border-zinc-700 justify-between mb-6 pb-3">
+                        <h2 class="tracking-tighter text-lg m-0">
+                            <a href="/games">Games</a>
+                        </h2>
+                        <a class="items-center inline-flex font-semibold tracking-tighter font-sans opacity-70" href="/games">
+                            {{ T "more" }}
+                            <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </header>
+
+                    <div class="gh-topic-content">
+                        {{ range first 5 (index .Site.Taxonomies.categories "games") }}
+                            {{- partial "content/content-grid-small" . -}}
+                        {{ end }}
+                    </div>
+                </section>
+
+                <section>
+                    <header class="flex items-center border-b border-zinc-300 dark:border-zinc-700 justify-between mb-6 pb-3">
+                        <h2 class="tracking-tighter text-lg m-0">
+                            <a href="/tecnologia">Tecnologia</a>
+                        </h2>
+                        <a class="items-center inline-flex font-semibold tracking-tighter font-sans opacity-70" href="/tecnologia">
+                            {{ T "more" }}
+                            <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </header>
+
+                    <div class="gh-topic-content">
+                        {{ range first 5 (index .Site.Taxonomies.categories "tecnologia") }}
+                            {{- partial "content/content-grid-small" . -}}
+                        {{ end }}
+                    </div>
+                </section>
+
+                <section>
+                    <header class="flex items-center border-b border-zinc-300 dark:border-zinc-700 justify-between mb-6 pb-3">
+                        <h2 class="tracking-tighter text-lg m-0">
+                            <a href="/hqs-e-livros">HQs e Livros</a>
+                        </h2>
+                        <a class="items-center inline-flex font-semibold tracking-tighter font-sans opacity-70" href="/hqs-e-livros">
+                            {{ T "more" }}
+                            <svg class="ml-2 icon icon-arrow-right h-4 w-4 fill-current"><use xlink:href="#icon-arrow-right"></use></svg>
+                        </a>
+                    </header>
+
+                    <div class="gh-topic-content">
+                        {{ range first 5 (index .Site.Taxonomies.categories "hqs-e-livros") }}
+                            {{- partial "content/content-grid-small" . -}}
+                        {{ end }}
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
 </div>

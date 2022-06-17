@@ -1,5 +1,5 @@
 <article class="flex flex-row items-center gap-x-4 sm:gap-x-8">
-    <a class="w-40 sm:w-64 lg:w-80 aspect-square relative bg-gray-100" href="{{ .Permalink }}">
+    <a class="w-40 sm:w-64 lg:w-80 aspect-square relative bg-zinc100" href="{{ .Permalink }}">
         {{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
 
         {{ with $image }}
