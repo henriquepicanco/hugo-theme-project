@@ -2,20 +2,9 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    {{ block "head/resource-hints" . }}{{ partial "head/resource-hints.html" . }}{{ end }}
+    {{ block "head/script-header" . }}{{ partial "head/script-header.html" . }}{{ end }}
+    {{ block "head/stylesheet" . }}{{ partial "head/stylesheet.html" . }}{{ end }}
     {{ block "head/seo" . }}{{ partial "head/seo.html" . }}{{ end }}
-
-    {{ $style := resources.Get "css/style.min.css" }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}">
-
-    <link href='https://cdnjs.cloudflare.com' rel='preconnect' crossorigin>
-
-    <script>
-        // It's best to inline this in `head` to avoid FOUC (flash of unstyled content) when changing pages or themes
-        if ( localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) ) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+    {{ block "head/favicons" . }}{{ partial "head/favicons.html" . }}{{ end }}
 </head>

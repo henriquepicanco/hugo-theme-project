@@ -19,11 +19,11 @@
 
         {{ block "icons-symbol-defs" . }}{{- partial "icons/icons-symbol-defs" . -}}{{ end }}
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.js" integrity="sha512-k7QxImzhmkyQlKfXekAOE+maYrmpPiXmk9CyCpk70WuciKRxH6WoSfnTUjfBNVzdRKeIBebt/Mf79phgFMu1hA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js"></script>
 
         <script>
             window.addEventListener('load', () => {
-              quicklink.listen();
+                quicklink.listen();
             });
         </script>
 

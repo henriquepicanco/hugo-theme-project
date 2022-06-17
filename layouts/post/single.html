@@ -1,33 +1,29 @@
 {{ define "main" }}
 
-<div class="max-w-screen-xl mx-auto px-4 py-6 lg:py-12 flex flex-col lg:flex-row lg:gap-x-20 space-y-12 lg:space-y-0">
-    <article class="block space-y-8">
-        <header class="flex flex-col flex-wrap space-y-4 lg:space-y-6 max-w-auto max-w-3xl mx-auto">
-            {{ block "categories" . }}{{- partial "post/categories" . -}}{{ end }}
+    <main class=" py-16">
+        <article class="flex flex-col gap-y-8">
+            <header class="items-start relative grid grid-cols-mobile lg:grid-cols-desktop gap-y-4">
+                {{ block "categories" . }}{{- partial "post/categories" . -}}{{ end }}
 
-            {{ if .Title }}
-                <h1 class="block text-2xl lg:text-6xl my-0">{{ .Title }}</h1>
+                {{ if .Title }}
+                <h1 class="m-0 text-3xl lg:text-[44px] font-bold tracking-tighter leading-tight col-start-main col-end-main">{{- .Title -}}</h1>
+                {{ end }}
+
+                {{ if .Param "subtitle" }}
+                    <h2 class="m-0 font-normal text-lg lg:text-md leading-normal col-start-main col-end-main">{{- .Param "subtitle" -}}</h2>
+                {{ end }}
+
+                {{ block "date" . }}{{ partial "post/meta" . }}{{ end }}
+
+                {{ block "featured_image" . }}{{- partial "post/featured_image" . -}}{{ end }}
+            </header>
+
+            {{ if .Content }}
+            <section class="entry-content grid grid-cols-mobile lg:grid-cols-desktop">
+                {{ .Content }}
+            </section>
             {{ end }}
+        </article>
+    </main>
 
-            {{ if .Param "subtitle" }}
-                <h2 class="text-base lg:text-2xl font-normal leading-normal lg:leading-relaxed black my-0">{{ .Param "subtitle" }}</h2>
-            {{ end }}
-
-            {{ block "date" . }}{{ partial "post/meta" . }}{{ end }}
-        </header>
-
-        {{ block "featured_image" . }}{{- partial "post/featured_image" . -}}{{ end }}
-
-        {{ if .Content }}
-        <section class="flex flex-col flex-nowrap font-serif max-w-auto max-w-3xl mx-auto">
-            {{ .Content }}
-        </section>
-        {{ end }}
-
-        {{ block "tags" . }}{{ partial "post/tags" . }}{{ end }}
-
-        {{ block "disqus" . }}{{ partial "post/disqus" . }}{{ end }}
-    </article>
-
-</div>
 {{ end }}
