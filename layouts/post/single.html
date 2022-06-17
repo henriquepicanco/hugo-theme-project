@@ -3,7 +3,7 @@
     <main class=" py-16">
         <article class="flex flex-col gap-y-8">
             <header class="items-start relative grid grid-cols-mobile lg:grid-cols-desktop gap-y-4">
-                {{ block "categories" . }}{{- partial "post/categories" . -}}{{ end }}
+                {{ block "categories" . }}{{- partial "components/categories" . -}}{{ end }}
 
                 {{ if .Title }}
                 <h1 class="m-0 text-3xl lg:text-[44px] font-bold tracking-tighter leading-tight col-start-main col-end-main">{{- .Title -}}</h1>
@@ -13,9 +13,9 @@
                     <h2 class="m-0 font-normal text-lg lg:text-md leading-normal col-start-main col-end-main">{{- .Param "subtitle" -}}</h2>
                 {{ end }}
 
-                {{ block "date" . }}{{ partial "post/meta" . }}{{ end }}
+                {{ block "date" . }}{{ partial "components/meta" . }}{{ end }}
 
-                {{ block "featured_image" . }}{{- partial "post/featured_image" . -}}{{ end }}
+                {{ block "featured_image" . }}{{- partial "components/featured_image" . -}}{{ end }}
             </header>
 
             {{ if .Content }}

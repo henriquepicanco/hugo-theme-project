@@ -1,0 +1,24 @@
+{{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+
+{{- if isset .Params "featured_image" }}
+    <figure class="block mt-6 col-start-wide col-end-wide">
+        <img
+            srcset="
+                {{ ( $image.Resize "360x webp" ).RelPermalink }} 360w,
+                {{ ( $image.Resize "600x webp" ).RelPermalink }} 600w,
+                {{ ( $image.Resize "780x webp" ).RelPermalink }} 780w,
+                {{ ( $image.Resize "1024x webp" ).RelPermalink }} 1024w,
+                {{ ( $image.Resize "1366x webp" ).RelPermalink }} 1366w
+            "
+            src='{{ ( $image.Resize "1024x webp" ).RelPermalink }}'
+            sizes="(min-width: 1366px) 1366px, 100w"
+            width="1366"
+            height="auto"
+            alt="{{- if isset .Params "featured_image_alt" }}{{ index .Params "featured_image_alt" }}{{- end }}"
+        />
+
+        {{- if isset .Params "featured_image_caption" }}
+            <figcaption class="featured-image-caption">{{ index .Params "featured_image_caption" }}</figcaption>
+        {{- end }}
+    </figure>
+{{ end }}
