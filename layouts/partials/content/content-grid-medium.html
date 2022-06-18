@@ -1,9 +1,9 @@
-<article class="{{ if .IsHome }}lg:col-start-1 lg:col-end-3 max-w-3xl w-full mx-auto{{ end }}">
-    <div class="flex flex-row gap-4 lg:gap-6">
-        {{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
+{{ $image := resources.Get ( printf "images/%s" .Params.featured_image ) }}
 
-        {{ with $image }}
-        <a href="{{ .RelPermalink }}" class="w-24 flex-shrink-0 h-full relative before:content-[''] before:block before:pb-custom-70 lg:w-32">
+ <article class="{{ if .IsHome }}lg:col-start-1 lg:col-end-3 max-w-3xl w-full mx-auto{{ end }}">
+    <div class="flex flex-row gap-4 lg:gap-6">
+        {{ if .Params.featured_image }}
+        <a href="{{ .Permalink }}" class="w-24 flex-shrink-0 h-full relative before:content-[''] before:block before:pb-custom-70 lg:w-32">
             <figure>
                 <img
                     class="block max-w-full h-full left-0 object-cover absolute top-0 w-full"
@@ -17,6 +17,7 @@
                     sizes="(max-width: 1200px) 100vw, 1200px"
                     src="{{ ($image.Resize "2000x center").RelPermalink }}"
                     alt="{{ .Title }}"
+                    loading="lazy"
                 />
             </figure>
         </a>

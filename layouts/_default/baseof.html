@@ -3,7 +3,7 @@
     {{- partial "head/head" . -}}
 
     <body class="body">
-        <div id="page" class="site">
+        <turbo-frame target="_top">
             <a class="sr-only" href="#site-content">{{ T "skipContent" }}</a>
 
             {{ block "header" . }}{{- partial "header/site-header" . -}}{{ end }}
@@ -15,17 +15,9 @@
             {{ block "footer" . }}{{- partial "footer/site-footer" . -}}{{ end }}
 
             {{ block "offcanvas" . }}{{- partial "offcanvas/offcanvas-menu" . -}}{{ end }}
-        </div>
+        </turbo-frame>
 
         {{ block "icons-symbol-defs" . }}{{- partial "icons/icons-symbol-defs" . -}}{{ end }}
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.2.0/quicklink.umd.js"></script>
-
-        <script>
-            window.addEventListener('load', () => {
-                quicklink.listen();
-            });
-        </script>
 
         <script id="dark-mode-toggle-js" type="text/javascript">
             var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -68,10 +60,10 @@
         </script>
 
         <script id="menu-toggle-js" type="text/javascript">
-            const menuToggle = document.getElementById( 'menu-toggle' );
+            var menuToggle = document.getElementById( 'menu-toggle' );
 
-            const menuOpenIcon = document.getElementById( 'menu-open-icon' );
-            const menuCloseIcon = document.getElementById( 'menu-close-icon' );
+            var menuOpenIcon = document.getElementById( 'menu-open-icon' );
+            var menuCloseIcon = document.getElementById( 'menu-close-icon' );
 
             menuToggle.addEventListener( 'click', function() {
                 document.body.classList.toggle( 'offcanvas-menu-toggled' );
@@ -98,10 +90,10 @@
         </script>
 
         <script id="search-toggle-js" type="text/javascript">
-            const searchToggle = document.getElementById( 'search-toggle' );
+            var searchToggle = document.getElementById( 'search-toggle' );
 
-            const searchOpenIcon = document.getElementById( 'search-open-icon' );
-            const searchCloseIcon = document.getElementById( 'search-close-icon' );
+            var searchOpenIcon = document.getElementById( 'search-open-icon' );
+            var searchCloseIcon = document.getElementById( 'search-close-icon' );
 
             searchToggle.addEventListener( 'click', function() {
                 document.body.classList.toggle( 'offcanvas-search-toggled' );
@@ -125,19 +117,6 @@
                     searchCloseIcon.classList.remove( 'hidden' );
                 }
             });
-        </script>
-
-        <script id="site-header-js" type="text/javascript">
-            var prevScrollpos = window.pageYOffset;
-            window.onscroll = function() {
-                var currentScrollPos = window.pageYOffset;
-                if (prevScrollpos > currentScrollPos) {
-                    document.querySelector("#masthead").style.top = "0";
-                } else {
-                    document.querySelector("#masthead").style.top = "-131px";
-                }
-                prevScrollpos = currentScrollPos;
-            }
         </script>
     </body>
 </html>

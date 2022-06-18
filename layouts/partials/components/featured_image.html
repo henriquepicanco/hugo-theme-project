@@ -15,6 +15,7 @@
             width="1366"
             height="auto"
             alt="{{- if isset .Params "featured_image_alt" }}{{ index .Params "featured_image_alt" }}{{- end }}"
+            loading="lazy"
         />
 
         {{- if isset .Params "featured_image_caption" }}
